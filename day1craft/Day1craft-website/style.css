@@ -1,0 +1,77 @@
+/* styles.css - extracted from your original script */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('https://i.imgur.com/Sg6skVn.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+nav a {
+  color: #ffeb3b;
+  padding: 15px 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+main {
+  padding: 30px;
+}
+
+section {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #ffeb3b;
+}
+
+p {
+  line-height: 1.6;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+  nav a {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
