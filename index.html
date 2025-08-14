@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day1Craft Fishing Lures</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GSAP -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-grid">
+
+  <!-- LOADER -->
+  <div id="loader"><div class="spinner"></div></div>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="nav container">
+      <div class="brand">
+        <img src="designimage/day1logo.png" alt="Day1Craft Logo" loading="eager"/>
+        <span class="text">Day1Craft</span>
+      </div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#how-we-craft">How We Craft</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENT -->
+  <main>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <video autoplay muted loop playsinline>
+        <source src="designimage/videolayout.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>
+          <span style="color: blue;">Premium Fishing</span>
+          <span style="color: red;">Lures Crafted</span>
+          <span style="color: white;">with Precision</span>
+        </h1>
+        <p>Inspired by performance, engineered for realism, and trusted by anglers worldwide.</p>
+        <a class="btn" href="#products">Shop Top-Sellers →</a>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section container" id="info">
+      <h2>Crafted for Serious Anglers</h2>
+      <p class="lead">Day1Craft fishing lures are designed for performance, precision, and durability. Trusted by professionals, tested in real-world waters.</p>
+      <div class="cards">
+        <div class="card reveal">
+          <h3>Engineered for Results</h3>
+          <p>Hydrodynamic balance ensures stable, realistic movement underwater—turning follows into strikes.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Built to Last</h3>
+          <p>High-grade materials and coatings maintain performance even in tough conditions.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Trusted by Anglers</h3>
+          <p>Field-tested across the country, delivering consistency, quality, and results.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="section container">
+      <h2>Top-Selling Lures</h2>
+      <div class="product-grid">
+        <article class="product reveal" data-tilt>
+          <img src="Productimage/KIFM55_009.png" alt="KIFM55" loading="lazy">
+          <h3>KIFM55 — Precision in Motion</h3>
+          <p>55mm profile with balanced internal weighting for pinpoint casting. Lifelike twitch action mimics wounded baitfish. Corrosion-resistant hardware and UV-reactive finish for picky fish.</p>
+        </article>
+        <article class="product reveal" data-tilt>
+          <img src="Productimage/KIM40_009.png" alt="KIM40" loading="lazy">
+          <h3>KIM40 — Aggression Unleashed</h3>
+          <p>Compact 40mm body with aggressive wobble. Dives quick and holds tight action at speed—perfect for fast retrieves and stop-and-go techniques.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW WE CRAFT -->
+    <section id="how-we-craft" class="section container">
+      <h2>How We Craft It</h2>
+      <div class="split">
+        <div class="reveal">
+          <img src="designimage/mold.jpg" alt="Mold Process" loading="lazy">
+        </div>
+        <div class="reveal">
+          <p>Every Day1Craft lure begins with precision-engineered molds. From the first prototype to the final product, each piece meets high standards in durability, balance, and realism.
+          Our team blends modern techniques with traditional craftsmanship—pouring, trimming, coating, and hand-painting. Each lure goes through quality checks before hitting the water.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR GUIDE -->
+    <section id="color-guide" class="section container">
+  <h2>Color Meaning &amp; Suggested Use for Fishing Lure Brands</h2>
+  <p class="lead">A quick reference for selecting brand and UI colors suited for fishing lure products.</p>
+
+  <div class="color-table-wrap">
+    <table class="color-table" aria-label="Color meanings and best uses">
+      <thead>
+        <tr>
+          <th>Color</th>
+          <th>Meaning / Emotion</th>
+          <th>Best Use for Your Brand</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--blue"></div> Blue</td>
+          <td>Trust, water, calm, professionalism</td>
+          <td>Background, logo, buttons</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--green"></div> Green</td>
+          <td>Nature, sustainability, balance</td>
+          <td>Eco-friendly branding, packaging</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--black"></div> Black</td>
+          <td>Premium, strong, bold</td>
+          <td>Text, logo, high-end product lines</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--orange"></div> Orange</td>
+          <td>Energy, visibility, action</td>
+          <td>Promotions, Call-to-Action buttons, highlights</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--yellow"></div> Yellow</td>
+          <td>Optimism, attention, clarity</td>
+          <td>Sale tags, warm product highlights</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--red"></div> Red</td>
+          <td>Passion, excitement, urgency</td>
+          <td>Limited offers, impulse-buy products</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--gray"></div> Gray</td>
+          <td>Neutral, modern, clean</td>
+          <td>Backgrounds, secondary menus</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+    <!-- TESTIMONIAL -->
+    <section class="quote">
+      <div class="container">
+        <blockquote>“Good Quality Good Catch ”</blockquote>
+        <div class="cite">– Josh Belen &amp; Ivan Bernales</div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="cta-band">
+      <div class="container">
+        <h2 class="reveal">Interested in Custom Lures or Bulk Orders?</h2>
+        <p class="lead reveal">We’re looking for partners and passionate anglers to test and distribute Day1Craft lures.</p>
+        <p style="margin-top:18px;"><a class="btn" href="#contact">Contact Us</a></p>
+      </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="section container list" id="mission-vision">
+      <h2>Mission &amp; Vision</h2>
+      <p><strong>Mission:</strong> D1CPI delivers premiere quality products through its people—our competitive advantage—guided by Safety, Quality, People, Process, Delivery, Cost Efficiency, and Kaizen.</p>
+      <p><strong>Vision:</strong> To become a globally recognized producer of high-performance fishing lures that redefine angling standards worldwide.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container list">
+      <h2>Contact Us</h2>
+      <p>Just Reach us!</p>
+      <p><strong>Email:</strong> jenniferbelen@day1craft.com</p>
+      <p><strong>Phone:</strong> +63 912 345 6789</p>
+    </section>
+
+    <!-- PRIVACY -->
+    <section id="privacy" class="section container list">
+      <h2>Privacy Policy</h2>
+      <p>We value your privacy. This policy outlines how we collect, use, and protect your information.</p>
+      <p><strong>1. Collection:</strong> Only necessary info like your name, email &amp; inquiries.</p>
+      <p><strong>2. Use:</strong> Used to reply to you. We never sell or share your info.</p>
+      <p><strong>3. Security:</strong> We take steps to prevent unauthorized access to your data.</p>
+      <p><strong>4. Cookies:</strong> Used to improve your experience. You can disable it anytime.</p>
+      <p><strong>5. Updates:</strong> We may update this policy. Check back anytime.</p>
+      <p>Email: <a href="mailto:joshuabelen@day1craft.com">joshuabelen@day1craft.com</a></p>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2025 Day1Craft Fishing Lures. All rights reserved. | <a href="#privacy">Privacy Policy</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+<!-- how to choose the right fishing lure colors -->
+<section id="how to choose the right fishing lure colors" class="section container">
+  <h2>🎣 How to choose the right fishing lure colors</h2>
+  <p class="lead">Choose the right lure color based on water clarity, weather, and fish behavior.</p>
+
+  <div class="color-table-wrap">
+    <table class="color-table" aria-label="Lure colors and their meanings">
+      <thead>
+        <tr>
+          <th>Lure Color</th>
+          <th>Meaning / Purpose</th>
+        </tr>
+      </thead>
+      <tbody id="lureTableBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  const lureColors = [
+    { color: "White", meaning: "Mimics baitfish like shad or anchovies; great in clear water and bright conditions." },
+    { color: "Silver / Chrome", meaning: "Reflective like real fish scales; ideal for sunny days in clear water." },
+    { color: "Black", meaning: "Strong silhouette in low light or muddy water; excellent contrast." },
+    { color: "Green Pumpkin", meaning: "Natural and subtle; great for clear water and cautious fish." },
+    { color: "Chartreuse", meaning: "Bright and flashy; great in stained, murky water or overcast days." },
+    { color: "Red / Orange", meaning: "Mimics injured prey; can trigger reaction strikes. Good for shallow or spring fishing." },
+    { color: "Purple / Junebug", meaning: "Effective in dark or stained water; high contrast, often used at night." },
+    { color: "Glow / UV", meaning: "Enhances visibility in deep or low-light conditions; useful at night or deep-sea." }
+  ];
+
+  const tableBody = document.getElementById("lureTableBody");
+
+  lureColors.forEach(item => {
+    const row = document.createElement("tr");
+    row.innerHTML = `<td><strong>${item.color}</strong></td><td>${item.meaning}</td>`;
+    tableBody.appendChild(row);
+  });
+</script>
