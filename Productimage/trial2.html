@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day1Craft Fishing Lures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      font-size: 15px;
+    }
+
+    main {
+      flex: 1;
+      padding-top: 90px;
+    }
+
+    header {
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 50px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 50px;
+    }
+
+    .brand-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #004b8d;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero div {
+      position: relative;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .section-container {
+      display: none;
+      padding: 60px 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .section-container.active {
+      display: block;
+    }
+
+    .section-container h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #004b8d;
+    }
+
+    .section-container p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .product {
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .product h3 {
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #002244;
+      color: #fff;
+      text-align: left;
+      padding: 30px 20px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    #loader {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2000;
+      display: none;
+    }
+
+    .spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #004b8d;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="designimage/day1logo.png" alt="Day1Craft Logo" />
+        <span class="brand-text">Day1Craft</span>
+      </div>
+      <ul>
+        <li><a data-target="home">Home</a></li>
+        <li><a data-target="products">Products</a></li>
+        <li><a data-target="about">About</a></li>
+        <li><a data-target="contact">Contact</a></li>
+        <li><a data-target="privacy">Privacy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <main>
+  <section class="hero" id="home">
+    <video autoplay muted loop playsinline aria-hidden="true">
+      <source src="designimage/videolayout.mp4" type="video/mp4" />
+    </video>
+    <div>
+      <h1>We specialize in premium fishing lures crafted with precision</h1>
+      <p>Inspired by performance, and built for anglers worldwide.</p>
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section style="background: #ffffff; padding: 60px 30px; text-align: center;">
+    <h2 style="font-size: 2rem; color: #002244; margin-bottom: 20px;">Crafted for Serious Anglers</h2>
+    <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; color: #444;">
+      Day1Craft fishing lures are designed for performance, precision, and durability. Trusted by professionals, tested in real-world waters.
+    </p>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; max-width: 1100px; margin: auto;">
+      <div style="flex: 1 1 300px; background: #f5f7fa; padding: 25px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <h3 style="color: #002244; font-size: 1.2rem; margin-bottom: 10px;">Engineered for Results</h3>
+        <p style="font-size: 1rem; color: #555;">
+          Each lure is designed with hydrodynamic balance, ensuring stable and realistic movement underwater.
+        </p>
+      </div>
+      <div style="flex: 1 1 300px; background: #f5f7fa; padding: 25px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <h3 style="color: #002244; font-size: 1.2rem; margin-bottom: 10px;">Built to Last</h3>
+        <p style="font-size: 1rem; color: #555;">
+          Using high-grade materials, our lures maintain performance even in tough fishing conditions.
+        </p>
+      </div>
+      <div style="flex: 1 1 300px; background: #f5f7fa; padding: 25px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <h3 style="color: #002244; font-size: 1.2rem; margin-bottom: 10px;">Trusted by Anglers</h3>
+        <p style="font-size: 1rem; color: #555;">
+          Day1Craft lures are tested by anglers across the country—delivering consistency, quality, and results.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+ <section style="background: #ffffff; padding: 60px 30px;" id="products">
+  <h2 style="text-align: center; font-size: 2rem; color: #002244; margin-bottom: 20px;">Top-Selling Lures</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: auto;">
+
+    <!-- KIFM55 -->
+    <div style="flex: 1 1 400px; background: #f9f9f9; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <img src="Productimage/KIFM55_009.png" alt="KIFM55 Lure" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
+      <h3 style="color: #002244; font-size: 1.3rem; margin-bottom: 10px;">KIFM55 — Precision in Motion</h3>
+      <p style="font-size: 1rem; color: #555; line-height: 1.6;">
+        The KIFM55 is engineered for technical anglers who demand exact lure control. With its 55mm profile and balanced internal weighting, it delivers pinpoint casting accuracy and mimics a wounded baitfish with lifelike twitch action. Built with corrosion-resistant hardware and a UV-reactive finish, the KIFM55 is your go-to when fish get selective.
+      </p>
+    </div>
+
+    <!-- KIM40 -->
+    <div style="flex: 1 1 400px; background: #f9f9f9; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <img src="Productimage/KIM40_009.png" alt="KIM40 Lure" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
+      <h3 style="color: #002244; font-size: 1.3rem; margin-bottom: 10px;">KIM40 — Aggression Unleashed</h3>
+      <p style="font-size: 1rem; color: #555; line-height: 1.6;">
+        Designed for rapid strikes, the KIM40 features an aggressive wobble and a compact 40mm body ideal for pressured waters. It dives quickly and maintains a tight action at high speeds, making it perfect for both fast retrieves and stop-and-go techniques. Reinforced with a hard coating and razor-sharp treble hooks, this lure turns cautious chasers into committed biters.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+</section> <!-- end of Top-Selling Lures -->
+<!-- How We Craft It Section -->
+<section style="background: #f5f5f5; padding: 60px 20px;" id="how-we-craft">
+  <div style="max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
+    
+    <!-- Image -->
+    <div style="flex: 1 1 400px;">
+      <img src="designimage/mold.jpg" alt="Mold Process" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    </div>
+
+    <!-- Text Content -->
+    <div style="flex: 1 1 500px;">
+      <h2 style="color: #002244; font-size: 2rem; margin-bottom: 20px;">How We Craft It</h2>
+      <p style="font-size: 1.05rem; color: #333; line-height: 1.7;">
+        Every Day1Craft lure begins with precision-engineered molds, carefully developed by experienced makers. From the first prototype to the final product, we ensure each piece meets our high standards in durability, balance, and realism. 
+        <br><br>
+        Our team combines modern techniques with traditional craftsmanship — pouring, trimming, coating, and painting each lure by hand. Once shaped, each lure goes through quality checks before hitting the water. Because for us, it’s not just a product. It’s a tool built to perform, cast after cast.
+      </p>
+    </div>
+
+  </div>
+</section>
+<section style="padding: 60px 20px; background: #ffffff; text-align: center;">
+  <h2 style="font-size: 2rem; color: #004b8d; margin-bottom: 20px;">From Passion to Precision</h2>
+  <p style="max-width: 800px; margin: auto; font-size: 1.1rem; line-height: 1.8; color: #333;">
+    Day1Craft was founded by anglers who wanted more than just ordinary lures. With only two models released, each one is crafted with deliberate engineering, rigorous field testing, and an obsession for perfect action. Whether you're casting inshore or deep, our lures are designed to outperform and outlast.
+  </p>
+</section>
+
+
+
+
+<!-- ====================== -->
+<!-- SECTION: Brand Story -->
+<!-- ====================== -->
+<section style="padding: 60px 20px; background: #ffffff; text-align: center;">
+  <h2 style="font-size: 2rem; color: #004b8d; margin-bottom: 20px;">From Passion to Precision</h2>
+  <p style="max-width: 800px; margin: auto; font-size: 1.1rem; line-height: 1.8; color: #333;">
+    Day1Craft was founded by anglers who wanted more than just ordinary lures. With only two models released, each one is crafted with deliberate engineering, rigorous field testing, and an obsession for perfect action. Whether you're casting inshore or deep, our lures are designed to outperform and outlast.
+  </p>
+</section>
+<!-- /SECTION: Brand Story -->
+
+<!-- ============================ -->
+<!-- SECTION: Angler Testimonial -->
+<!-- ============================ -->
+<section style="padding: 50px 20px; background: #f5faff; text-align: center;">
+  <blockquote style="font-size: 1.3rem; font-style: italic; color: #444; max-width: 700px; margin: auto;">
+    “Ang lufet Pasok sa BABA yong hook ND makawala ! .”
+  </blockquote>
+  <p style="margin-top: 15px; font-weight: bold; color: #004b8d;">– Josh Belen & Ivan Bernales</p>
+</section>
+<!-- /SECTION: Angler Testimonial -->
+
+<!-- ============================== -->
+<!-- SECTION: Call to Action (CTA) -->
+<!-- ============================== -->
+<section style="background: #004b8d; color: white; text-align: center; padding: 60px 20px;">
+  <h2 style="font-size: 2rem; margin-bottom: 20px;">Interested in Custom Lures or Bulk Orders?</h2>
+  <p style="font-size: 1.1rem; margin-bottom: 30px;">
+    We’re looking for partners and passionate anglers to test and distribute Day1Craft lures.
+  </p>
+  <a href="#contact" style="background: #fff; color: #004b8d; padding: 12px 30px; font-weight: 600; border-radius: 6px; text-decoration: none;">
+    Contact Us
+  </a>
+</section>
+<!-- /SECTION: Call to Action (CTA) -->
+
+<!-- =========================== -->
+<!-- SECTION: Teaser - Upcoming -->
+<!-- =========================== -->
+<section style="padding: 60px 20px; background: #e6f0fa; text-align: center;">
+  <h2 style="font-size: 1.8rem; color: #002244; margin-bottom: 15px;">More in the Works...</h2>
+  <p style="max-width: 600px; margin: auto; color: #444; font-size: 1.05rem;">
+    Our next generation lure is now in development — tuned for deep water predators with a unique vibration profile. Stay connected for updates and exclusive early access!
+  </p>
+</section>
+<!-- /SECTION: Teaser - Upcoming -->
+
+
+
+
+
+
+
+</main>
+
+</section>
+    <div id="loader"><div class="spinner"></div></div>
+
+    <div id="products" class="section-container">
+      <h2>Our Lures</h2>
+      <p>We specialize in high-quality, handcrafted fishing lures for bulk orders.</p>
+      <div class="product-grid">
+        <div class="product">
+          <img src="Productimage/KIFM55_009.png" alt="KIFM55">
+          <h3>KIFM55</h3>
+          <p>Designed for serious anglers with premium quality materials.</p>
+        </div>
+        <div class="product">
+          <img src="Productimage/KIM40_009.png" alt="KIM40">
+          <h3>KIM40</h3>
+          <p>Perfect for freshwater fishing, built with precision and balance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="about" class="section-container">
+      <h2>Mission & Vision</h2>
+      <p><strong>Mission:</strong> D1CPI believes in delivering premiere quality products through its people — the company’s most competitive advantage — guided by core principles: Safety, Quality, People, Process, Delivery, Cost Efficiency, and Kaizen.</p>
+      <p><strong>Vision:</strong> To become a globally recognized producer of high-performance fishing lures that redefine angling standards worldwide.</p>
+    </div>
+
+    <div id="contact" class="section-container">
+      <h2>Contact Us</h2>
+      <p>kong interesado</p>
+      <p>Email: jenniferbelen@day1craft.com</p>
+      <p>Phone: +63 912 345 6789</p>
+    </div>
+
+    <div id="privacy" class="section-container">
+      <h2>Privacy Policy</h2>
+      <p>We value your privacy. This policy outlines how we collect, use, and protect your information.</p>
+      <h3>1. Collection</h3>
+      <p>Only necessary info like your name, email & inquiries.</p>
+      <h3>2. Use</h3>
+      <p>Used to reply to you. We never sell or share your info.</p>
+      <h3>3. Security</h3>
+      <p>We take steps to prevent unauthorized access to your data.</p>
+      <h3>4. Cookies</h3>
+      <p>Used to improve your experience. You can disable it anytime.</p>
+      <h3>5. Updates</h3>
+      <p>We may update this policy. Check back anytime.</p>
+      <p>Email: <a href="mailto:joshuabelen@day1craft.com">joshuabelen@day1craft.com</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Day1Craft Fishing Lures. All rights reserved. | <a data-target="privacy">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('[data-target]');
+    const sections = document.querySelectorAll('.section-container');
+    const loader = document.getElementById('loader');
+    const homeSection = document.getElementById('home');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = e.target.getAttribute('data-target');
+        sections.forEach(sec => sec.classList.remove('active'));
+        homeSection.style.display = 'none';
+
+        if (target === 'home') {
+          homeSection.style.display = 'flex';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        loader.style.display = 'block';
+        setTimeout(() => {
+          loader.style.display = 'none';
+          const selected = document.getElementById(target);
+          if (selected) {
+            selected.classList.add('active');
+            window.scrollTo({ top: selected.offsetTop - 80, behavior: 'smooth' });
+          }
+        }, 600);
+      });
+    });
+
+    window.addEventListener('load', () => {
+      homeSection.style.display = 'flex';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day1Craft Fishing Lures</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <!-- GSAP for smooth, futuristic animations -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(1200px 800px at 20% 10%, #0c1a2a 0%, #080d16 40%, #05070c 100%);
+      color: #e6eef7;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Futuristic grid overlay */
+    .bg-grid::before, .bg-grid::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .bg-grid::before {
+      background-image:
+        linear-gradient(rgba(0,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,0.06) 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px;
+      transform: translateZ(0);
+    }
+    .bg-grid::after {
+      background: radial-gradient(700px 500px at 80% 15%, rgba(0,247,255,0.12), transparent 60%),
+                  radial-gradient(900px 600px at 10% 80%, rgba(0,136,255,0.10), transparent 65%);
+      filter: blur(0.5px);
+    }
+
+    :root{
+      --accent: #00f7ff;
+      --accent-2:#6ee7ff;
+      --card:#0f1626;
+      --card-border: rgba(255,255,255,0.10);
+      --muted:#b9c7d6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 72px 0; }
+    .section h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem);
+      letter-spacing: .5px;
+      text-align: center;
+      color: var(--accent);
+      margin: 0 0 12px;
+    }
+    .section p.lead {
+      max-width: 850px; margin: 0 auto; text-align: center; color: var(--muted);
+    }
+
+    /* ========== NAVBAR ========== */
+    header{
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(10,16,28,0.65);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { height: 46px; width: auto; }
+    .brand .text {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: .8px;
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(0,247,255,.35);
+    }
+
+    .nav ul { list-style: none; display: flex; gap: 22px; }
+    .nav a {
+      position: relative; color: #eaf6ff; font-weight: 500; padding: 6px 2px;
+    }
+    .nav a::after{
+      content:""; position:absolute; left:0; right:0; bottom:-4px; height:2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: scaleX(0); transform-origin: center; transition: transform .28s ease;
+    }
+    .nav a:hover{ color: var(--accent-2); }
+    .nav a:hover::after{ transform: scaleX(1); }
+
+    main{ padding-top: 86px; }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative; height: 92vh; display: grid; place-items: center;
+      overflow: clip;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero video{
+      position: absolute; inset: 0; width:100%; height:100%; object-fit: cover; z-index: 0;
+      filter: saturate(1.05) contrast(1.1) brightness(.85);
+    }
+    .hero .overlay{
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(600px 400px at 50% 30%, rgba(0,247,255,0.12), transparent 50%),
+        linear-gradient(180deg, rgba(5,10,18,.55) 0%, rgba(5,10,18, .35) 40%, rgba(5,10,18,.85) 100%);
+    }
+    .hero .content{
+      position: relative; z-index: 2; text-align: center; padding: 24px;
+      backdrop-filter: blur(2px);
+    }
+    .hero h1{
+      font-family:'Orbitron', sans-serif;
+      font-size: clamp(2rem, 4.5vw + .5rem, 4rem);
+      margin: 0 0 10px; color: var(--accent);
+      text-shadow: 0 0 22px rgba(0,247,255,.5);
+    }
+    .hero p{
+      font-size: clamp(1rem, .7vw + .8rem, 1.25rem);
+      color: #dbe9f5;
+      max-width: 780px; margin: 0 auto 18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 12px 22px;
+      background: linear-gradient(90deg, var(--accent), #00a6ff);
+      color:#071019; font-weight:700; border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,247,255,.25), inset 0 1px 0 rgba(255,255,255,.35);
+      transition: transform .25s ease, filter .25s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+
+    /* ========== CARDS / FEATURES ========== */
+    .cards{
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 28px;
+    }
+    @media (max-width: 960px){ .cards{ grid-template-columns: 1fr; } }
+
+    .card{
+      background: linear-gradient(180deg, rgba(18,24,38,.75) 0%, rgba(12,18,28,.75) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 14px; padding: 22px;
+      box-shadow: 0 0 0 1px rgba(0,247,255,.06), 0 10px 30px rgba(0,0,0,.35);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow: 0 0 0 1px rgba(0,247,255,.25), 0 18px 40px rgba(0,247,255,.12); }
+    .card h3{
+      font-family:'Orbitron', sans-serif; color:#fff; margin: 0 0 8px; font-size: 1.15rem;
+    }
+    .card p{ color: var(--muted); margin:0; }
+
+    /* ========== PRODUCTS ========== */
+    .product-grid{
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 28px;
+    }
+    @media (max-width: 960px){ .product-grid{ grid-template-columns: 1fr; } }
+
+    .product{
+      display:flex; flex-direction: column; gap: 14px;
+      border: 1px solid var(--card-border); border-radius: 16px;
+      padding: 18px; background: linear-gradient(180deg, rgba(15,23,36,.75), rgba(10,16,26,.75));
+      box-shadow: inset 0 0 0 1px rgba(0,247,255,.06), 0 10px 30px rgba(0,0,0,.35);
+      transform-style: preserve-3d;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .product:hover{
+      transform: translateY(-6px);
+      border-color: rgba(0,247,255,.35);
+      box-shadow: 0 0 0 1px rgba(0,247,255,.22), 0 18px 40px rgba(0,247,255,.12);
+    }
+
+    .product img{
+      width: 100%; max-width: 520px; margin: 0 auto;
+      border-radius: 12px; display:block;
+      background: #0d1524;
+      box-shadow: 0 0 0 1px rgba(0,247,255,.12), 0 16px 38px rgba(0,0,0,.45);
+    }
+    .product h3{
+      font-family:'Orbitron', sans-serif; margin: 2px 0 4px; color:#eaf6ff;
+    }
+    .product p{ color: var(--muted); margin: 0; }
+
+    /* ========== SPLIT SECTION (How We Craft) ========== */
+    .split{
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 30px; align-items: center; margin-top: 18px;
+    }
+    @media (max-width: 960px){ .split{ grid-template-columns: 1fr; } }
+    .split img{
+      width: 100%; border-radius: 14px; display: block;
+      box-shadow: 0 0 0 1px rgba(0,247,255,.12), 0 16px 38px rgba(0,0,0,.45);
+    }
+
+    /* ========== QUOTE ========== */
+    .quote{
+      text-align: center; padding: 56px 0; background: linear-gradient(180deg, rgba(0,247,255,.08), transparent 60%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    blockquote{
+      font-style: italic; font-size: clamp(1.1rem, .6vw + 1rem, 1.35rem);
+      color: #d7f8ff; margin: 0 auto; max-width: 820px;
+      text-shadow: 0 0 12px rgba(0,247,255,.25);
+    }
+    .quote .cite{ margin-top: 12px; color: var(--accent); font-weight: 600; }
+
+    /* ========== CTA BAND ========== */
+    .cta-band{
+      text-align: center; padding: 64px 0;
+      background: linear-gradient(90deg, rgba(0,247,255,.12), rgba(0,136,255,.12));
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* ========== SIMPLE LIST SECTIONS ========== */
+    .list p{ margin: 6px 0; }
+
+    /* ========== FOOTER ========== */
+    footer{
+      background: #04070d; color: #98a8b9; text-align: center; padding: 26px 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer a{ color: var(--accent); text-decoration: underline; }
+
+    /* ========== LOADER (kept) ========== */
+    #loader {
+      position: fixed; inset: 0; display: grid; place-items: center; z-index: 1200;
+      background: rgba(3,8,15,0.6); backdrop-filter: blur(2px);
+      opacity: 0; pointer-events: none; transition: opacity .3s ease;
+    }
+    #loader.active{ opacity: 1; pointer-events: all; }
+    .spinner {
+      border: 6px solid rgba(255,255,255,0.2);
+      border-top: 6px solid var(--accent); border-radius: 50%;
+      width: 44px; height: 44px; animation: spin .8s linear infinite;
+      box-shadow: 0 0 18px rgba(0,247,255,.35);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Reveal animation helper */
+    .reveal { opacity: 0; transform: translateY(24px); }
+  </style>
+</head>
+<body class="bg-grid">
+  <!-- LOADER (kept for UX polish) -->
+  <div id="loader"><div class="spinner"></div></div>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="nav container">
+      <div class="brand">
+        <img src="designimage/day1logo.png" alt="Day1Craft Logo" loading="eager"/>
+        <span class="text">Day1Craft</span>
+      </div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#how-we-craft">How We Craft</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+<section id="home" class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="designimage/videolayout.mp4" type="video/mp4" />
+  </video>
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>
+      <span style="color: blue;">Premium Fishing</span>
+      <span style="color: red;">Lures Crafted</span>
+      <span style="color: white;">with Precision</span>
+    </h1>
+    <p>Inspired by performance, engineered for realism, and trusted by anglers worldwide.</p>
+    <a class="btn" href="#products">Shop Top-Sellers →</a>
+  </div>
+</section>
+
+
+    <!-- INFO / FEATURES -->
+    <section class="section container" id="info">
+      <h2>Crafted for Serious Anglers</h2>
+      <p class="lead">Day1Craft fishing lures are designed for performance, precision, and durability. Trusted by professionals, tested in real-world waters.</p>
+
+      <div class="cards">
+        <div class="card reveal">
+          <h3>Engineered for Results</h3>
+          <p>Hydrodynamic balance ensures stable, realistic movement underwater—turning follows into strikes.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Built to Last</h3>
+          <p>High-grade materials and coatings maintain performance even in tough conditions.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Trusted by Anglers</h3>
+          <p>Field-tested across the country, delivering consistency, quality, and results.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="section container">
+      <h2>Top-Selling Lures</h2>
+      <div class="product-grid">
+
+        <!-- KIFM55 -->
+        <article class="product reveal" data-tilt>
+          <img src="Productimage/KIFM55_009.png" alt="KIFM55" loading="lazy">
+          <h3>KIFM55 — Precision in Motion</h3>
+          <p>55mm profile with balanced internal weighting for pinpoint casting. Lifelike twitch action mimics wounded baitfish. Corrosion-resistant hardware and UV-reactive finish for picky fish.</p>
+        </article>
+
+        <!-- KIM40 -->
+        <article class="product reveal" data-tilt>
+          <img src="Productimage/KIM40_009.png" alt="KIM40" loading="lazy">
+          <h3>KIM40 — Aggression Unleashed</h3>
+          <p>Compact 40mm body with aggressive wobble. Dives quick and holds tight action at speed—perfect for fast retrieves and stop-and-go techniques.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- HOW WE CRAFT -->
+    <section id="how-we-craft" class="section container">
+      <h2>How We Craft It</h2>
+      <div class="split">
+        <div class="reveal">
+          <img src="designimage/mold.jpg" alt="Mold Process" loading="lazy">
+        </div>
+        <div class="reveal">
+          <p>
+            Every Day1Craft lure begins with precision-engineered molds. From the first prototype to the final product, each piece meets high standards in durability, balance, and realism.
+            Our team blends modern techniques with traditional craftsmanship—pouring, trimming, coating, and hand-painting. Each lure goes through quality checks before hitting the water.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+<!-- ================= COLOR GUIDE SECTION (HTML + CSS in one file) ================= -->
+<style>
+#color-guide.section { padding-top: 56px; }
+
+.color-table-wrap{
+  background: linear-gradient(180deg, rgba(18,24,38,.75), rgba(12,18,28,.75));
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(0,247,255,.06), 0 10px 30px rgba(0,0,0,.35);
+  overflow: hidden;
+}
+
+.color-table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.color-table thead th{
+  text-align: left;
+  font-family:'Orbitron', sans-serif;
+  font-weight: 700;
+  color: #eaf6ff;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,247,255,0.06);
+}
+
+.color-table tbody td{
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: var(--muted);
+}
+
+.color-name{
+  display:flex; align-items:center; gap:12px; color:#fff; font-weight:600;
+}
+
+.swatch{
+  width: 28px; height: 28px; border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.35), 0 6px 14px rgba(0,0,0,.35);
+}
+
+.swatch--blue   { background:#3b82f6; }
+.swatch--green  { background:#22c55e; }
+.swatch--black  { background:#000000; }
+.swatch--orange { background:#f97316; }
+.swatch--yellow { background:#facc15; }
+.swatch--red    { background:#ef4444; }
+.swatch--gray   { background:#9ca3af; }
+
+@media (max-width: 720px){
+  .color-table-wrap{ overflow-x:auto; }
+  .color-table{ min-width: 720px; }
+}
+</style>
+
+<section id="color-guide" class="section container">
+  <h2>Color Meaning &amp; Suggested Use for Fishing Lure Brands</h2>
+  <p class="lead">A quick reference for selecting brand and UI colors suited for fishing lure products.</p>
+
+  <div class="color-table-wrap">
+    <table class="color-table" aria-label="Color meanings and best uses">
+      <thead>
+        <tr>
+          <th>Color</th>
+          <th>Meaning / Emotion</th>
+          <th>Best Use for Your Brand</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="color-name"><span class="swatch swatch--blue"></span>Blue</div></td>
+          <td>Trust, water, calm, professionalism</td>
+          <td>Background, logo, buttons</td>
+        </tr>
+        <tr>
+          <td><div class="color-name"><span class="swatch swatch--green"></span>Green</div></td>
+          <td>Nature, sustainability, balance</td>
+          <td>Eco-friendly branding, packaging</td>
+        </tr>
+        <tr>
+          <td><div class="color-name"><span class="swatch swatch--black"></span>Black</div></td>
+          <td>Premium, strong, bold</td>
+          <td>Text, logo, high-end product lines</td>
+        </tr>
+        <tr>
+          <td><div class="color-name"><span class="swatch swatch--orange"></span>Orange</div></td>
+          <td>Energy, visibility, action</td>
+          <td>Promotions, Call-to-Action buttons, highlights</td>
+        </tr>
+        <tr>
+          <td><div class="color-name"><span class="swatch swatch--yellow"></span>Yellow</div></td>
+          <td>Optimism, attention, clarity</td>
+          <td>Sale tags, warm product highlights</td>
+        </tr>
+        <tr>
+          <td><div class="color-name"><span class="swatch swatch--red"></span>Red</div></td>
+          <td>Passion, excitement, urgency</td>
+          <td>Limited offers, impulse-buy products</td>
+        </tr>
+        <tr>
+          <td><div class="color-name"><span class="swatch swatch--gray"></span>Gray</div></td>
+          <td>Neutral, modern, clean</td>
+          <td>Backgrounds, secondary menus</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<!-- ================= /COLOR GUIDE SECTION ================= -->
+
+
+
+
+
+
+
+
+    <!-- TESTIMONIAL -->
+    <section class="quote">
+      <div class="container">
+        <blockquote>“Good Quality Good Catch ”</blockquote>
+        <div class="cite">– Josh Belen &amp; Ivan Bernales</div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="cta-band">
+      <div class="container">
+        <h2 class="reveal">Interested in Custom Lures or Bulk Orders?</h2>
+        <p class="lead reveal">We’re looking for partners and passionate anglers to test and distribute Day1Craft lures.</p>
+        <p style="margin-top:18px;"><a class="btn" href="#contact">Contact Us</a></p>
+      </div>
+    </section>
+
+    <!-- TEASER -->
+    <section class="section container">
+      <h2>More in the Works…</h2>
+      <p class="lead reveal">Our next-gen lure is in development—tuned for deep-water predators with a unique vibration profile. Stay connected for updates and early access.</p>
+    </section>
+
+    <!-- SECONDARY PRODUCTS (kept original mini list) -->
+    <section class="section container" id="products-mini">
+      <h2>Our Lures</h2>
+      <p class="lead">We specialize in high-quality, handcrafted fishing lures for bulk orders.</p>
+      <div class="product-grid">
+        <article class="product reveal" data-tilt>
+          <img src="Productimage/KIFM55_009.png" alt="KIFM55" loading="lazy">
+          <h3>KIFM55</h3>
+          <p>Designed for serious anglers with premium materials.</p>
+        </article>
+        <article class="product reveal" data-tilt>
+          <img src="Productimage/KIM40_009.png" alt="KIM40" loading="lazy">
+          <h3>KIM40</h3>
+          <p>Perfect for freshwater fishing—balanced and precise.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="section container list" id="mission-vision">
+      <h2>Mission &amp; Vision</h2>
+      <p><strong>Mission:</strong> D1CPI delivers premiere quality products through its people—our competitive advantage—guided by Safety, Quality, People, Process, Delivery, Cost Efficiency, and Kaizen.</p>
+      <p><strong>Vision:</strong> To become a globally recognized producer of high-performance fishing lures that redefine angling standards worldwide.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container list">
+      <h2>Contact Us</h2>
+      <p>Just Reach us!</p>
+      <p><strong>Email:</strong> jenniferbelen@day1craft.com</p>
+      <p><strong>Phone:</strong> +63 912 345 6789</p>
+    </section>
+
+    <!-- PRIVACY -->
+    <section id="privacy" class="section container list">
+      <h2>Privacy Policy</h2>
+      <p>We value your privacy. This policy outlines how we collect, use, and protect your information.</p>
+      <p><strong>1. Collection:</strong> Only necessary info like your name, email &amp; inquiries.</p>
+      <p><strong>2. Use:</strong> Used to reply to you. We never sell or share your info.</p>
+      <p><strong>3. Security:</strong> We take steps to prevent unauthorized access to your data.</p>
+      <p><strong>4. Cookies:</strong> Used to improve your experience. You can disable it anytime.</p>
+      <p><strong>5. Updates:</strong> We may update this policy. Check back anytime.</p>
+      <p>Email: <a href="mailto:joshuabelen@day1craft.com">joshuabelen@day1craft.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Day1Craft Fishing Lures. All rights reserved. | <a href="#privacy">Privacy Policy</a>
+  </footer>
+
+  <script>
+    // ===== Loader (kept, optional trigger on nav click) =====
+    const loader = document.getElementById('loader');
+    const navLinks = document.querySelectorAll('header .nav a[href^="#"]');
+    navLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
+        // Soft loader pulse
+        loader.classList.add('active');
+        setTimeout(()=> loader.classList.remove('active'), 500);
+      });
+    });
+
+    // ===== GSAP Scroll reveals =====
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { y: 28, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: .8, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    // Hero content entrance
+    gsap.from('.hero .content', { y: 24, opacity: 0, duration: 1, ease: 'power2.out', delay: .15 });
+
+    // ===== Subtle parallax on hero overlay =====
+    const overlay = document.querySelector('.hero .overlay');
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - .5) * 6;
+      const y = (e.clientY / window.innerHeight - .5) * 6;
+      overlay.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    // ===== Simple tilt on product cards (no external lib) =====
+    const tiltCards = document.querySelectorAll('[data-tilt]');
+    tiltCards.forEach(card => {
+      let rect;
+      const damp = 20;
+      function handleMove(e){
+        rect = rect || card.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top + rect.height/2;
+        const dx = (e.clientX - cx) / rect.width;
+        const dy = (e.clientY - cy) / rect.height;
+        card.style.transform = `rotateX(${(-dy*damp)}deg) rotateY(${(dx*damp)}deg) translateY(-6px)`;
+      }
+      function reset(){ card.style.transform = 'translateY(0)'; rect = null; }
+      card.addEventListener('mousemove', handleMove);
+      card.addEventListener('mouseleave', reset);
+      card.addEventListener('mouseenter', () => card.style.transition = 'transform .12s ease');
+    });
+
+    // ===== Smooth scroll offset for fixed header =====
+    // (Ensures anchors don't hide under the navbar)
+    const OFFSET = 76;
+    function scrollWithOffset(hash){
+      const el = document.querySelector(hash);
+      if(!el) return;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - OFFSET;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', function(e){
+        const hash = this.getAttribute('href');
+        if(hash.length > 1){
+          e.preventDefault();
+          scrollWithOffset(hash);
+          history.pushState(null, "", hash);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
