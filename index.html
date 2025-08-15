@@ -80,101 +80,94 @@
       </div>
     </section>
 
-
-    
-    <!-- HOW WE CRAFT -->
-    <section id="how-we-craft" class="section container spa-section">
-      <h2>How We Craft It</h2>
-      <div class="split">
-        <div class="reveal">
-          <img src="designimage/MOLD.jpg" alt="Mold Process" loading="lazy">
-        </div>
-        <div class="reveal">
-          <p>Every Day1Craft lure begins with precision-engineered molds. From the first prototype to the final product, each piece meets high standards in durability, balance, and realism.
-          Our team blends modern techniques with traditional craftsmanship—pouring, trimming, coating, and hand-painting. Each lure goes through quality checks before hitting the water.</p>
-        </div>
-      </div>
-    </section>
-
-   
-   <!-- COLOR GUIDE -->
-<section id="color-guide" class="section container">
-  <h2>Color Meaning</h2>
-  <p class="lead">A quick reference for selecting lure.</p>
-
-  <div class="color-table-wrap">
-    <table class="color-table" aria-label="Color meanings">
-      <thead>
-        <tr>
-          <th>Color</th>
-          <th>Meaning / Emotion</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="color-name"><div class="swatch swatch--blue"></div> Blue</td>
-          <td>Trust, water, calm, professionalism</td>
-        </tr>
-        <tr>
-          <td class="color-name"><div class="swatch swatch--green"></div> Green</td>
-          <td>Nature, sustainability, balance</td>
-        </tr>
-        <tr>
-          <td class="color-name"><div class="swatch swatch--black"></div> Black</td>
-          <td>Premium, strong, bold</td>
-        </tr>
-        <tr>
-          <td class="color-name"><div class="swatch swatch--orange"></div> Orange</td>
-          <td>Energy, visibility, action</td>
-        </tr>
-        <tr>
-          <td class="color-name"><div class="swatch swatch--yellow"></div> Yellow</td>
-          <td>Optimism, attention, clarity</td>
-        </tr>
-        <tr>
-          <td class="color-name"><div class="swatch swatch--red"></div> Red</td>
-          <td>Passion, excitement, urgency</td>
-        </tr>
-        <tr>
-          <td class="color-name"><div class="swatch swatch--gray"></div> Gray</td>
-          <td>Neutral, modern, clean</td>
-        </tr>
-      </tbody>
-    </table>
+   <!-- HOW WE CRAFT -->
+<section id="how-we-craft" class="section container spa-section">
+  <h2>How We Craft It</h2>
+  <div class="split">
+    <div class="reveal">
+      <img src="designimage/MOLD.jpg" alt="Mold Process" loading="lazy">
+    </div>
+    <div class="reveal">
+      <p>Every Day1Craft lure begins with precision-engineered molds. From the first prototype to the final product, each piece meets high standards in durability, balance, and realism.
+      Our team blends modern techniques with traditional craftsmanship—pouring, trimming, coating, and hand-painting. Each lure goes through quality checks before hitting the water.</p>
+    </div>
   </div>
+
+  <!-- COLOR GUIDE (moved inside How We Craft) -->
+  <section id="color-guide" class="section container">
+    <h2>Color Meaning</h2>
+    <p class="lead">A quick reference for selecting lure.</p>
+
+    <div class="color-table-wrap">
+      <table class="color-table" aria-label="Color meanings">
+        <thead>
+          <tr>
+            <th>Color</th>
+            <th>Meaning / Emotion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="color-name"><div class="swatch swatch--blue"></div> Blue</td>
+            <td>Trust, water, calm, professionalism</td>
+          </tr>
+          <tr>
+            <td class="color-name"><div class="swatch swatch--green"></div> Green</td>
+            <td>Nature, sustainability, balance</td>
+          </tr>
+          <tr>
+            <td class="color-name"><div class="swatch swatch--black"></div> Black</td>
+            <td>Premium, strong, bold</td>
+          </tr>
+          <tr>
+            <td class="color-name"><div class="swatch swatch--orange"></div> Orange</td>
+            <td>Energy, visibility, action</td>
+          </tr>
+          <tr>
+            <td class="color-name"><div class="swatch swatch--yellow"></div> Yellow</td>
+            <td>Optimism, attention, clarity</td>
+          </tr>
+          <tr>
+            <td class="color-name"><div class="swatch swatch--red"></div> Red</td>
+            <td>Passion, excitement, urgency</td>
+          </tr>
+          <tr>
+            <td class="color-name"><div class="swatch swatch--gray"></div> Gray</td>
+            <td>Neutral, modern, clean</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- HOW TO CHOOSE (also inside How We Craft) -->
+  <section id="how-to-choose" class="section container">
+    <h2>🎣 How to Choose the Right Fishing Lure Colors</h2>
+    <p class="lead">Choose the right lure color based on water clarity, weather, and fish behavior.</p>
+
+    <ul id="lureList" class="lure-list"></ul>
+  </section>
+
+  <script>
+    const lureColors = [
+      { color: "White", meaning: "Mimics baitfish like shad or anchovies; great in clear water and bright conditions." },
+      { color: "Silver / Chrome", meaning: "Reflective like real fish scales; ideal for sunny days in clear water." },
+      { color: "Black", meaning: "Strong silhouette in low light or muddy water; excellent contrast." },
+      { color: "Green Pumpkin", meaning: "Natural and subtle; great for clear water and cautious fish." },
+      { color: "Chartreuse", meaning: "Bright and flashy; great in stained, murky water or overcast days." },
+      { color: "Red / Orange", meaning: "Mimics injured prey; can trigger reaction strikes. Good for shallow or spring fishing." },
+      { color: "Purple / Junebug", meaning: "Effective in dark or stained water; high contrast, often used at night." },
+      { color: "Glow / UV", meaning: "Enhances visibility in deep or low-light conditions; useful at night or deep-sea." }
+    ];
+
+    const list = document.getElementById("lureList");
+    lureColors.forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="lure-color">${item.color}</span> ${item.meaning}`;
+      list.appendChild(li);
+    });
+  </script>
 </section>
-
-
-
-<!-- how to choose the right fishing lure colors -->
-<section id="how-to-choose" class="section container">
-  <h2>🎣 How to Choose the Right Fishing Lure Colors</h2>
-  <p class="lead">Choose the right lure color based on water clarity, weather, and fish behavior.</p>
-
-  <ul id="lureList" class="lure-list"></ul>
-</section>
-
-<script>
-  const lureColors = [
-    { color: "White", meaning: "Mimics baitfish like shad or anchovies; great in clear water and bright conditions." },
-    { color: "Silver / Chrome", meaning: "Reflective like real fish scales; ideal for sunny days in clear water." },
-    { color: "Black", meaning: "Strong silhouette in low light or muddy water; excellent contrast." },
-    { color: "Green Pumpkin", meaning: "Natural and subtle; great for clear water and cautious fish." },
-    { color: "Chartreuse", meaning: "Bright and flashy; great in stained, murky water or overcast days." },
-    { color: "Red / Orange", meaning: "Mimics injured prey; can trigger reaction strikes. Good for shallow or spring fishing." },
-    { color: "Purple / Junebug", meaning: "Effective in dark or stained water; high contrast, often used at night." },
-    { color: "Glow / UV", meaning: "Enhances visibility in deep or low-light conditions; useful at night or deep-sea." }
-  ];
-
-  const list = document.getElementById("lureList");
-
-  lureColors.forEach(item => {
-    const li = document.createElement("li");
-    li.innerHTML = `<span class="lure-color">${item.color}</span> ${item.meaning}`;
-    list.appendChild(li);
-  });
-</script>
->
 
 
 
@@ -239,4 +232,3 @@
   </script>
 </body>
 </html>
-
