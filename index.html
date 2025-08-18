@@ -93,86 +93,137 @@
     </div>
   </div>
 
-  <!-- COLOR GUIDE (moved inside How We Craft) -->
-  <section id="color-guide" class="section container">
-    <h2>Color Meaning</h2>
-    <p class="lead">A quick reference for selecting lure.</p>
+ <!-- COLOR GUIDE (moved inside How We Craft) -->
+<section id="color-guide" class="section container">
+  <h2>Color Meaning</h2>
+  <p class="lead">A quick reference for selecting lure.</p>
 
-    <div class="color-table-wrap">
-      <table class="color-table" aria-label="Color meanings">
-        <thead>
-          <tr>
-            <th>Color</th>
-            <th>Meaning / Emotion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="color-name"><div class="swatch swatch--blue"></div> Blue</td>
-            <td>Trust, water, calm, professionalism</td>
-          </tr>
-          <tr>
-            <td class="color-name"><div class="swatch swatch--green"></div> Green</td>
-            <td>Nature, sustainability, balance</td>
-          </tr>
-          <tr>
-            <td class="color-name"><div class="swatch swatch--black"></div> Black</td>
-            <td>Premium, strong, bold</td>
-          </tr>
-          <tr>
-            <td class="color-name"><div class="swatch swatch--orange"></div> Orange</td>
-            <td>Energy, visibility, action</td>
-          </tr>
-          <tr>
-            <td class="color-name"><div class="swatch swatch--yellow"></div> Yellow</td>
-            <td>Optimism, attention, clarity</td>
-          </tr>
-          <tr>
-            <td class="color-name"><div class="swatch swatch--red"></div> Red</td>
-            <td>Passion, excitement, urgency</td>
-          </tr>
-          <tr>
-            <td class="color-name"><div class="swatch swatch--gray"></div> Gray</td>
-            <td>Neutral, modern, clean</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- HOW TO CHOOSE (also inside How We Craft) -->
-  <section id="how-to-choose" class="section container">
-    <h2>🎣 How to Choose the Right Fishing Lure Colors</h2>
-    <p class="lead">Choose the right lure color based on water clarity, weather, and fish behavior.</p>
-
-    <ul id="lureList" class="lure-list"></ul>
-  </section>
-
-  <script>
-    const lureColors = [
-      { color: "White", meaning: "Mimics baitfish like shad or anchovies; great in clear water and bright conditions." },
-      { color: "Silver / Chrome", meaning: "Reflective like real fish scales; ideal for sunny days in clear water." },
-      { color: "Black", meaning: "Strong silhouette in low light or muddy water; excellent contrast." },
-      { color: "Green Pumpkin", meaning: "Natural and subtle; great for clear water and cautious fish." },
-      { color: "Chartreuse", meaning: "Bright and flashy; great in stained, murky water or overcast days." },
-      { color: "Red / Orange", meaning: "Mimics injured prey; can trigger reaction strikes. Good for shallow or spring fishing." },
-      { color: "Purple / Junebug", meaning: "Effective in dark or stained water; high contrast, often used at night." },
-      { color: "Glow / UV", meaning: "Enhances visibility in deep or low-light conditions; useful at night or deep-sea." }
-    ];
-
-    const list = document.getElementById("lureList");
-    lureColors.forEach(item => {
-      const li = document.createElement("li");
-      li.innerHTML = `<span class="lure-color">${item.color}</span> ${item.meaning}`;
-      list.appendChild(li);
-    });
-  </script>
+  <div class="color-table-wrap">
+    <table class="color-table" aria-label="Color meanings">
+      <thead>
+        <tr>
+          <th>Color</th>
+          <th>Meaning / Emotion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--blue"></div> Blue</td>
+          <td>Trust, water, calm, professionalism</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--green"></div> Green</td>
+          <td>Nature, sustainability, balance</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--black"></div> Black</td>
+          <td>Premium, strong, bold</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--orange"></div> Orange</td>
+          <td>Energy, visibility, action</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--yellow"></div> Yellow</td>
+          <td>Optimism, attention, clarity</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--red"></div> Red</td>
+          <td>Passion, excitement, urgency</td>
+        </tr>
+        <tr>
+          <td class="color-name"><div class="swatch swatch--gray"></div> Gray</td>
+          <td>Neutral, modern, clean</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 
 
-    
 
+<!-- 🎣 How to Choose -->
+<section id="how-to-choose" class="section container">
+  <h2>🎣 How to Choose the Right Fishing Lure Colors</h2>
+  <p class="lead">Choose the right lure color based on water clarity, weather, and fish behavior.</p>
+
+  <div id="lureList" class="lure-list"></div>
+</section>
+
+<script>
+  const lureColors = [
+    { color: "White", meaning: "Mimics baitfish like shad or anchovies; great in clear water and bright conditions." },
+    { color: "Silver", meaning: "Reflective like real fish scales; ideal for sunny days in clear water." },
+    { color: "Black", meaning: "Strong silhouette in low light or muddy water; excellent contrast." },
+    { color: "GreenPumpkin", meaning: "Natural and subtle; great for clear water and cautious fish." },
+    { color: "Chartreuse", meaning: "Bright and flashy; great in stained, murky water or overcast days." },
+    { color: "RedOrange", meaning: "Mimics injured prey; can trigger reaction strikes. Good for shallow or spring fishing." },
+    { color: "PurpleJunebug", meaning: "Effective in dark or stained water; high contrast, often used at night." },
+    { color: "GlowUV", meaning: "Enhances visibility in deep or low-light conditions; useful at night or deep-sea." }
+  ];
+
+  const list = document.getElementById("lureList");
+  lureColors.forEach(item => {
+    const box = document.createElement("div");
+    box.className = "lure-box";
+    box.innerHTML = `
+      <div class="color-swatch lure-color ${item.color}"></div>
+      <div class="lure-text">
+        <strong>${item.color}</strong>
+        <p>${item.meaning}</p>
+      </div>
+    `;
+    list.appendChild(box);
+  });
+</script>
+
+
+
+<!-- 🎣 HOW TO CHOOSE LURE COLORS (Suggestions) -->
+<section id="lure-suggestions" class="section container">
+  <h2>✅ How to Choose Lure Colors (Suggestions)</h2>
+
+  <div class="suggestion">
+    <h3>1. Based on Water Clarity</h3>
+    <ul>
+      <li>
+        <strong>Clear Water:</strong><br>
+        ➤ Use natural colors like <b>silver</b>, <b>green pumpkin</b>, <b>white</b>, <b>brown</b>, baitfish patterns.
+      </li>
+      <li>
+        <strong>Stained / Murky Water:</strong><br>
+        ➤ Choose bright colors like <b style="color:#dfff00;">chartreuse</b>, <b style="color:orange;">orange</b>, 
+        or dark silhouettes like <b>black</b> and <b>blue</b>.
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="suggestion">
+    <h3>2. Based on Depth</h3>
+    <ul>
+      <li>
+        <strong>Shallow (0–10 ft):</strong><br>
+        ➤ Any color works—use <b style="color:red;">reds</b>, <b style="color:white;">whites</b>, natural baitfish colors.
+      </li>
+      <li>
+        <strong>Medium Depth (10–30 ft):</strong><br>
+        ➤ <b style="color:blue;">Blues</b>, <b style="color:green;">greens</b>, and <b style="color:#dfff00;">chartreuse</b> remain visible.<br>
+        ➤ Avoid <b style="color:red;">red/orange</b> (these fade quickly).
+      </li>
+      <li>
+        <strong>Deep Water (30+ ft):</strong><br>
+        ➤ Use <b>high-contrast</b> or <b>UV/glow</b> lures.<br>
+        ➤ Dark lures like <b>black</b>, <b>purple</b>, or <b>UV chartreuse</b> show up better.
+      </li>
+    </ul>
+  </div>
+</section>
+</section>
+
+    
     <!-- ABOUT -->
     <section id="about" class="section container spa-section">
       <h2>About Us</h2>
@@ -232,4 +283,3 @@
   </script>
 </body>
 </html>
-
